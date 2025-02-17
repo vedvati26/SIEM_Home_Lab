@@ -1,134 +1,117 @@
-# SIEM_Home_Lab
+# SIEM Home Lab
 
-Requirements
+## **Requirements**
 
-Hardware:
+**Hardware:**
 
-Ubuntu Server 22.04 (for Splunk Enterprise)
+- **Ubuntu Server 22.04** (for Splunk Enterprise)
+- **Windows 11 Machine**
 
-Windows 11 Machine
+**Software:**
 
-Software:
+- **Splunk Enterprise**
+- **Splunk Universal Forwarder**
 
-Splunk Enterprise
+---
 
-Splunk Universal Forwarder
+## **Investigating Web-based Attacks**
 
-Investigating Web-based Attacks
+**SQL Injection:**
 
-SQL Injection:
+- Analyzed web logs to detect potential SQL injection attempts.
+- **Hint:** Look for unusual characters or SQL keywords used in URI parameters, such as `' or 1=1`.
 
-Analyzed web logs to detect potential SQL injection attempts.
+**Cross-Site Scripting (XSS):**
 
-Hint: Look for unusual characters or SQL keywords used in URI parameters, such as ' or 1=1.
+- Monitored web logs for signs of XSS attacks.
+- **Hint:** Search for requests containing suspicious JavaScript keywords like `script`, `""`, or `onload`.
 
-Cross-Site Scripting (XSS):
+**Cross-Site Request Forgery (CSRF):**
 
-Monitored web logs for signs of XSS attacks.
+- Identified CSRF attacks in web logs.
+- **Hint:** Look for requests with unexpected or unauthorized actions.
 
-Hint: Search for requests containing suspicious JavaScript keywords like "script", "", or "onload".
+**Directory Traversal:**
 
-Cross-Site Request Forgery (CSRF):
+- Searched for indications of Directory Traversal attacks.
+- **Hint:** Check for requests containing `../` or `%2e%2e/` sequences.
 
-Identified CSRF attacks in web logs.
+**Brute Force:**
 
-Hint: Look for requests with unexpected or unauthorized actions.
+- Monitored access logs for brute force attack patterns.
+- **Hint:** Look for repeated login attempts from the same IP address.
 
-Directory Traversal:
+**Session Hijacking:**
 
-Searched for indications of Directory Traversal attacks.
+- Detected session hijacking attempts by analyzing web logs.
+- **Hint:** Look for multiple logins from different IPs for the same user account.
 
-Hint: Check for requests containing ../ or %2e%2e/ sequences.
+**Remote Code Execution (RCE):**
 
-Brute Force:
+- Identified potential RCE attempts in web logs.
+- **Hint:** Look for unusual file extensions or commands.
 
-Monitored access logs for brute force attack patterns.
+**XML External Entity (XXE):**
 
-Hint: Look for repeated login attempts from the same IP address.
+- Searched for XML External Entity attacks.
+- **Hint:** Look for XML payloads referencing external entities.
 
-Session Hijacking:
+**Insecure Deserialization:**
 
-Detected session hijacking attempts by analyzing web logs.
+- Detected Insecure Deserialization attempts.
+- **Hint:** Look for serialized data or references to vulnerable libraries.
 
-Hint: Look for multiple logins from different IPs for the same user account.
+**Server-Side Request Forgery (SSRF):**
 
-Remote Code Execution (RCE):
+- Monitored web logs for SSRF attacks.
+- **Hint:** Look for URLs pointing to internal or sensitive resources.
 
-Identified potential RCE attempts in web logs.
+---
 
-Hint: Look for unusual file extensions or commands.
+## **Investigating Network-based Attacks**
 
-XML External Entity (XXE):
+**Port Scanning:**
 
-Searched for XML External Entity attacks.
+- Detected port scanning activities in network logs.
+- **Hint:** Look for multiple connection attempts from the same source IP to different destination ports.
 
-Hint: Look for XML payloads referencing external entities.
+**DDoS Attack:**
 
-Insecure Deserialization:
+- Identified Distributed Denial of Service attacks.
+- **Hint:** Watch for a sudden increase in traffic volume.
 
-Detected Insecure Deserialization attempts.
+**Brute Force SSH Attack:**
 
-Hint: Look for serialized data or references to vulnerable libraries.
+- Detected brute force SSH login attempts.
+- **Hint:** Check for repeated failed login attempts from the same source IP.
 
-Server-Side Request Forgery (SSRF):
+**DNS Tunneling:**
 
-Monitored web logs for SSRF attacks.
+- Identified DNS tunneling activities.
+- **Hint:** Look for DNS queries with abnormally large query sizes.
 
-Hint: Look for URLs pointing to internal or sensitive resources.
+**Malicious Payload:**
 
+- Detected known malicious payloads using Suricata or Zeek IDS.
+- **Hint:** Search for signatures associated with malware.
 
-Investigating Network-based Attacks
+**Malicious File Download:**
 
-Port Scanning:
+- Detected malicious file downloads in HTTP server logs.
+- **Hint:** Search for requests with file extensions like `.exe` or `.dll`.
 
-Detected port scanning activities in network logs.
+**Network Reconnaissance:**
 
-Hint: Look for multiple connection attempts from the same source IP to different destination ports.
+- Identified network reconnaissance activities using Suricata IDS.
+- **Hint:** Look for multiple connection attempts from the same source IP.
 
-DDoS Attack:
+**Man-in-the-Middle (MitM) Attack:**
 
-Identified Distributed Denial of Service attacks.
+- Detected potential MitM attacks.
+- **Hint:** Look for rejected connections or incomplete TCP handshakes.
 
-Hint: Watch for a sudden increase in traffic volume.
+**Data Exfiltration:**
 
-Brute Force SSH Attack:
+- Identified data exfiltration attempts.
+- **Hint:** Look for large outbound data transfers or high volumes of data sent to external destinations.
 
-Detected brute force SSH login attempts.
-
-Hint: Check for repeated failed login attempts from the same source IP.
-
-DNS Tunneling:
-
-Identified DNS tunneling activities.
-
-Hint: Look for DNS queries with abnormally large query sizes.
-
-Malicious Payload:
-
-Detected known malicious payloads using Suricata or Zeek IDS.
-
-Hint: Search for signatures associated with malware.
-
-Malicious File Download:
-
-Detected malicious file downloads in HTTP server logs.
-
-Hint: Search for requests with file extensions like .exe or .dll.
-
-Network Reconnaissance:
-
-Identified network reconnaissance activities using Suricata IDS.
-
-Hint: Look for multiple connection attempts from the same source IP.
-
-Man-in-the-Middle (MitM) Attack:
-
-Detected potential MitM attacks.
-
-Hint: Look for rejected connections or incomplete TCP handshakes.
-
-Data Exfiltration:
-
-Identified data exfiltration attempts.
-
-Hint: Look for large outbound data transfers or high volumes of data sent to external destinations.
